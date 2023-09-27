@@ -29,18 +29,20 @@ $studentGrades = [
     ],
 ];
 
-function getAverageGrade (array $studentGrades): void
+function getaverageMark (array $studentGrades): void
 {
     foreach ($studentGrades as $studentGrade)
     {
         extract($studentGrade);
 
-        $totalGrade = array_sum($Grades);
+        $totalMarks = array_sum($Grades);
 
-        $averageGrade = $totalGrade / count($Grades);
+        $averageMark = $totalMarks / count($Grades);
 
-        printf("Average grade for %s: %.2f\n", $Name, $averageGrade);
+        $grade = ($averageMark < 33) ? "F" : (($averageMark < 40) ? "D" : (($averageMark < 50) ? "C" : (($averageMark < 60) ? "B" : (($averageMark < 70) ? "A-" : (($averageMark < 80) ? "A" : "A+")))));
+
+        printf("Student Name - %s | Total Marks - %d | Average - %.2f | Grade - %s\n", $Name, $totalMarks, $averageMark, $grade);
     }
 }
 
-getAverageGrade($studentGrades);
+getaverageMark($studentGrades);
